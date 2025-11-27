@@ -27,3 +27,8 @@ router.get('/movie/new', controller.newForm);
 router.post('/movie/create', upload.single('cover_file'), controller.create);
 
 module.exports = router;
+
+// Agregar estas rutas
+router.get('/movie/new', moviesController.createForm);
+router.post('/movie/new', moviesController.create);
+router.post('/movie/:id/delete', moviesController.delete);

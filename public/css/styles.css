@@ -59,3 +59,12 @@ input,textarea{width:100%;padding:10px;border-radius:6px;border:1px solid rgba(2
   .movie-show{flex-direction:column}
   .movie-card img{height:260px}
 }
+.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}

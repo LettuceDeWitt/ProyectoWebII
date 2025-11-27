@@ -45,3 +45,35 @@ module.exports = {
     }
   }
 };
+const Movie = require('../models/moviesModel');
+
+module.exports = {
+  // Mostrar formulario para nueva película
+  createForm: (req, res) => {
+    res.render('movies/new', { error: null });
+  },
+
+  // Procesar nueva película
+  create: async (req, res) => {
+    try {
+      const { title, year, director, description, cover_url } = req.body;
+      await Movie.create(title, year, director, description, cover_url);
+      res.redirect('/admin');
+    } catch (err) {
+      console.error('Error creando película:', err);
+      res.render('movies/new', { error: 'Error al crear película' });
+    }
+  },
+
+  // Eliminar película
+  delete: async (req, res) => {
+    try {
+      const { id } = req.params;
+      await Movie.delete(id);
+      res.redirect('/admin');
+    } catch (err) {
+      console.error('Error eliminando película:', err);
+      res.redirect('/admin');
+    }
+  }
+};
