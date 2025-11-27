@@ -1,34 +1,39 @@
 const express = require('express');
 const router = express.Router();
-const controller = require('../controllers/moviesController');
-const multer = require('multer');
-const path = require('path');
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, '..', '..', 'public', 'img', 'uploads'));
-  },
-  filename: function (req, file, cb) {
-    const unique = Date.now() + '-' + Math.round(Math.random()*1e9);
-    cb(null, unique + path.extname(file.originalname));
-  }
-});
-const upload = multer({ storage: storage });
+console.log('🎯 movies.js - Iniciando carga del archivo de rutas');
 
-router.get('/', controller.index);
-router.get('/movie/:id', controller.show);
-
-// admin
-router.get('/admin', (req, res) => {
-  if (!req.session.user) return res.redirect('/login');
-  res.render('movies/admin', { user: req.session.user });
-});
-router.get('/movie/new', controller.newForm);
-router.post('/movie/create', upload.single('cover_file'), controller.create);
+// Intentar cargar el controlador
+try {
+  const controller = require('../controllers/moviesController');
+  console.log('✅ Controlador moviesController cargado correctamente');
+  
+  // ✅ ORDEN CORREGIDO - rutas específicas PRIMERO
+  router.get('/movie/new', controller.createForm);
+  console.log('✅ Ruta GET /movie/new registrada');
+  
+  router.get('/admin', controller.admin);
+  console.log('✅ Ruta GET /admin registrada');
+  
+  // ✅ Rutas con parámetros DESPUÉS
+  router.get('/movie/:id', controller.show);
+  console.log('✅ Ruta GET /movie/:id registrada');
+  
+  // Rutas públicas
+  router.get('/', controller.index);
+  console.log('✅ Ruta GET / registrada');
+  
+  // Rutas POST
+  router.post('/movie/new', controller.create);
+  console.log('✅ Ruta POST /movie/new registrada');
+  
+  router.post('/movie/:id/delete', controller.delete);
+  console.log('✅ Ruta POST /movie/:id/delete registrada');
+  
+  console.log('🎬 Todas las rutas de movies registradas correctamente');
+  
+} catch (error) {
+  console.error('❌ ERROR cargando moviesController:', error.message);
+}
 
 module.exports = router;
-
-// Agregar estas rutas
-router.get('/movie/new', moviesController.createForm);
-router.post('/movie/new', moviesController.create);
-router.post('/movie/:id/delete', moviesController.delete);

@@ -5,11 +5,12 @@
 <% } %>
 
 <form action="/movie/new" method="post" class="form-card">
-  <label>Título: <input name="title" required></label>
+  <label>Título: <input type="text" name="title" required></label>
   <label>Año: <input type="number" name="year" required></label>
-  <label>Director: <input name="director" required></label>
+  <label>Director: <input type="text" name="director" required></label>
   <label>Descripción: <textarea name="description" required></textarea></label>
-  <label>URL del Poster: <input name="cover_url" required></label>
+  <label>URL del Poster: <input type="text" name="cover_url" required></label>
+  
   <button type="submit" class="btn">Agregar Película</button>
   <a href="/admin" class="btn btn-secondary">Cancelar</a>
 </form>

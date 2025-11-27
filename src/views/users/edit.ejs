@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+    <main class="container">
+        <h2>Editar Usuario</h2>
+
+        <% if (typeof error !== 'undefined' && error) { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+
+        <form action="/admin/users/<%= userToEdit.id %>/update" method="post" class="form-card">
+            <label>
+                Usuario: 
+                <input type="text" name="username" value="<%= userToEdit.username %>" required>
+            </label>
+            
+            <label>
+                Email: 
+                <input type="email" name="email" value="<%= userToEdit.email %>" required>
+            </label>
+            
+            <div class="form-actions">
+                <button type="submit" class="btn">Actualizar Usuario</button>
+                <a href="/admin/users" class="btn btn-secondary">Cancelar</a>
+            </div>
+        </form>
+    </main>
+</body>
+</html>

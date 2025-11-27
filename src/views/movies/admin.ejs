@@ -1,20 +1,32 @@
 <h2>Panel Admin</h2>
-<p><a class="btn" href="/movie/new">Agregar nueva película</a></p>
-<p><a class="btn" href="/">Ir a la galería</a></p>
-<!-- En la sección donde muestras las películas -->
-<% movies.forEach(movie => { %>
-  <div class="movie-card">
-    <img src="<%= movie.cover_url %>" alt="<%= movie.title %>">
-    <h3><%= movie.title %> (<%= movie.year %>)</h3>
-    <p><strong>Director:</strong> <%= movie.director %></p>
-    <p><%= movie.description %></p>
-    
-    <!-- Botón Eliminar -->
-    <form action="/movie/<%= movie.id %>/delete" method="post" style="display: inline;">
-      <button type="submit" class="btn btn-danger" 
-              onclick="return confirm('¿Estás seguro de eliminar esta película?')">
-        Eliminar
-      </button>
-    </form>
-  </div>
-<% }); %>
+
+<div class="admin-actions">
+    <a class="btn" href="/movie/new">Agregar nueva película</a>
+    <a class="btn" href="/admin/users">Ver Usuarios Registrados</a>
+    <a class="btn" href="/">Ir a la galería</a>
+</div>
+
+<h3>Películas Existentes</h3>
+
+<% if (movies && movies.length > 0) { %>
+    <div class="movies-grid">
+        <% movies.forEach(movie => { %>
+        <div class="movie-card">
+            <img src="<%= movie.cover_url %>" alt="<%= movie.title %>">
+            <h3><%= movie.title %> (<%= movie.year %>)</h3>
+            <p><strong>Director:</strong> <%= movie.director %></p>
+            <p><%= movie.description %></p>
+            
+            <!-- Botón Eliminar -->
+            <form action="/movie/<%= movie.id %>/delete" method="post" style="display: inline;">
+            <button type="submit" class="btn btn-danger" 
+                    onclick="return confirm('¿Estás seguro de eliminar esta película?')">
+                Eliminar
+            </button>
+            </form>
+        </div>
+        <% }); %>
+    </div>
+<% } else { %>
+    <p>No hay películas en la base de datos.</p>
+<% } %>

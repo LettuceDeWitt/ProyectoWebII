@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios Registrados - Admin</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <%- include('../partials/header') %>
+
+    <main class="container">
+        <h1>Usuarios Registrados</h1>
+        
+        <div class="admin-actions">
+            <a href="/admin" class="btn">← Volver al Panel Admin</a>
+            <a href="/register" class="btn">Agregar Nuevo Usuario</a>
+        </div>
+
+        <% if (users && users.length > 0) { %>
+            <div class="users-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Usuario</th>
+                            <th>Email</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% users.forEach(user => { %>
+                            <tr>
+                                <td><%= user.id %></td>
+                                <td><%= user.username %></td>
+                                <td><%= user.email %></td>
+                                <td>
+    <!-- BOTÓN EDITAR FUNCIONAL -->
+    <a href="/admin/users/<%= user.id %>/edit" class="btn btn-small">Editar</a>
+    
+    <!-- BOTÓN ELIMINAR FUNCIONAL -->
+    <form action="/admin/users/<%= user.id %>/delete" method="post" style="display: inline;">
+        <button type="submit" class="btn btn-small btn-danger" 
+                onclick="return confirm('¿Estás seguro de eliminar este usuario?')">
+            Eliminar
+        </button>
+    </form>
+</td>
+                            </tr>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        <% } else { %>
+            <p>No hay usuarios registrados.</p>
+        <% } %>
+    </main>
+</body>
+</html>

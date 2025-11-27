@@ -58,13 +58,320 @@ input,textarea{width:100%;padding:10px;border-radius:6px;border:1px solid rgba(2
 @media(max-width:720px){
   .movie-show{flex-direction:column}
   .movie-card img{height:260px}
+}/* === TEMA OSCURO - CINE DE TERROR === */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
-.btn-danger {
-  background-color: #dc3545;
-  color: white;
+
+:root {
+    --blood-red: #8B0000;
+    --dark-red: #5A0000;
+    --purple-dark: #2D0036;
+    --purple-light: #4A235A;
+    --gray-dark: #1A1A1A;
+    --gray-medium: #2D2D2D;
+    --gray-light: #404040;
+    --text-light: #E0E0E0;
+    --text-lighter: #FFFFFF;
+    --accent: #FF6B6B;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    background: linear-gradient(135deg, var(--gray-dark) 0%, var(--purple-dark) 100%);
+    color: var(--text-light);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* === HEADER GÓTICO === */
+header {
+    background: linear-gradient(135deg, var(--dark-red) 0%, var(--purple-dark) 100%);
+    color: var(--text-lighter);
+    padding: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid var(--blood-red);
+    box-shadow: 0 4px 20px rgba(139, 0, 0, 0.3);
+}
+
+header h1 a {
+    color: var(--text-lighter);
+    text-decoration: none;
+    font-size: 2rem;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: 1px;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+}
+
+/* === BOTONES SANGRIENTOS === */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: linear-gradient(135deg, var(--blood-red) 0%, var(--dark-red) 100%);
+    color: var(--text-lighter);
+    text-decoration: none;
+    border-radius: 8px;
+    border: 2px solid var(--accent);
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(139, 0, 0, 0.4);
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--blood-red) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
 }
 
 .btn-secondary {
-  background-color: #6c757d;
-  color: white;
+    background: linear-gradient(135deg, var(--gray-light) 0%, var(--gray-medium) 100%);
+    border: 2px solid var(--gray-light);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, var(--gray-medium) 0%, var(--gray-light) 100%);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #DC143C 0%, #8B0000 100%);
+    border: 2px solid #FF4757;
+}
+
+.btn-danger:hover {
+    background: linear-gradient(135deg, #FF4757 0%, #DC143C 100%);
+}
+
+.btn-small {
+    padding: 8px 16px;
+    font-size: 0.8rem;
+}
+
+/* === FORMULARIOS FANTASMALES === */
+.form-card {
+    background: rgba(45, 0, 54, 0.8);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px rgba(139, 0, 0, 0.3);
+    max-width: 500px;
+    margin: 30px auto;
+    border: 1px solid var(--blood-red);
+    backdrop-filter: blur(10px);
+}
+
+.form-card label {
+    display: block;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: var(--text-lighter);
+}
+
+.form-card input,
+.form-card textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 8px;
+    background: rgba(26, 26, 26, 0.8);
+    border: 2px solid var(--purple-light);
+    border-radius: 8px;
+    color: var(--text-light);
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-card input:focus,
+.form-card textarea:focus {
+    outline: none;
+    border-color: var(--accent);
+    box-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+}
+
+.form-card input::placeholder,
+.form-card textarea::placeholder {
+    color: #888;
+}
+
+/* === ERRORES SANGRIENTOS === */
+.error {
+    color: #FF6B6B;
+    background: rgba(139, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    border-left: 4px solid var(--blood-red);
+    font-weight: bold;
+}
+
+/* === GALERÍA DE PELÍCULAS MACABRA === */
+.movies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.movie-card {
+    background: linear-gradient(135deg, var(--gray-medium) 0%, var(--purple-light) 100%);
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid var(--blood-red);
+    position: relative;
+    overflow: hidden;
+}
+
+.movie-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--blood-red), var(--accent));
+}
+
+.movie-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 35px rgba(139, 0, 0, 0.4);
+}
+
+.movie-card img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 2px solid var(--blood-red);
+}
+
+.movie-card h3 {
+    color: var(--text-lighter);
+    margin: 15px 0 10px;
+    font-size: 1.3rem;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.movie-card p {
+    color: var(--text-light);
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.movie-card strong {
+    color: var(--accent);
+}
+
+/* === PANEL ADMIN VAMPÍRICO === */
+.admin-actions {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.admin-actions .btn {
+    flex: 1;
+    min-width: 200px;
+    text-align: center;
+}
+
+/* === TABLA DE USUARIOS GÓTICA === */
+.users-table table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(45, 45, 45, 0.8);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+    border: 1px solid var(--blood-red);
+}
+
+.users-table th,
+.users-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--gray-light);
+}
+
+.users-table th {
+    background: linear-gradient(135deg, var(--dark-red) 0%, var(--purple-dark) 100%);
+    color: var(--text-lighter);
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.users-table tr:hover {
+    background: rgba(139, 0, 0, 0.1);
+}
+
+/* === TÍTULOS SANGRIENTOS === */
+h1, h2, h3 {
+    color: var(--text-lighter);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    border-bottom: 3px solid var(--blood-red);
+    padding-bottom: 10px;
+    display: inline-block;
+}
+
+h2 {
+    font-size: 2rem;
+    color: var(--accent);
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--text-lighter);
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+    .container {
+        padding: 15px;
+    }
+    
+    header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .actions {
+        justify-content: center;
+    }
+    
+    .admin-actions {
+        flex-direction: column;
+    }
+    
+    .movies-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-card {
+        margin: 20px 15px;
+        padding: 20px;
+    }
 }

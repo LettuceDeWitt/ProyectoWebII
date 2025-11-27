@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-  <meta charset="utf-8">
-  <title>Cine de Terror</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="/css/styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cine de Terror</title>
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-  <%- include('partials/header', { user: typeof user !== 'undefined' ? user : null }) %>
-  <main class="container">
-    <%- body %>
-  </main>
-  <script src="/js/main.js"></script>
+    <%- include('partials/header') %>
+    <main class="container">
+        <%- body %>
+    </main>
+    <script src="/js/main.js"></script>
 </body>
 </html>
