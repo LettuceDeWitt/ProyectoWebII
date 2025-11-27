@@ -1,0 +1,9 @@
+<h2>Login</h2>
+<% if (typeof error !== 'undefined' && error) { %>
+  <p class="error"><%= error %></p>
+<% } %>
+<form action="/login" method="post" class="form-card">
+  <label>Usuario: <input name="username" required></label>
+  <label>Contraseña: <input type="password" name="password" required></label>
+  <button type="submit" class="btn">Entrar</button>
+</form>

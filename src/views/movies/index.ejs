@@ -1,0 +1,21 @@
+<section class="gallery">
+  <% if (movies.length === 0) { %>
+    <p>No hay películas aún.</p>
+  <% } %>
+  <% movies.forEach(m => { %>
+    <article class="movie-card">
+      <img src="<%= m.cover_url || '/img/placeholder.png' %>" alt="Portada">
+      <h3><%= m.title %> (<%= m.year %>)</h3>
+      <p class="director">Dir: <%= m.director %></p>
+      <button onclick="toggleDesc(<%= m.id %>)">Ver descripción</button>
+      <div id="desc-<%= m.id %>" class="desc"><%= m.description %></div>
+    </article>
+  <% }) %>
+</section>
+<script>
+function toggleDesc(id){
+  const el = document.getElementById('desc-'+id);
+  if(!el) return;
+  el.style.display = el.style.display === 'block' ? 'none' : 'block';
+}
+</script>

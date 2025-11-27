@@ -1,0 +1,10 @@
+<h2>Agregar película</h2>
+<form action="/movie/create" method="post" enctype="multipart/form-data" class="form-card">
+  <label>Título: <input name="title" required></label>
+  <label>Año: <input type="number" name="year" required></label>
+  <label>Director: <input name="director" required></label>
+  <label>Descripción: <textarea name="description"></textarea></label>
+  <label>Portada (archivo): <input type="file" name="cover_file" accept="image/*"></label>
+  <label>O URL de portada: <input name="cover_url"></label>
+  <button type="submit" class="btn">Guardar</button>
+</form>
